@@ -19,16 +19,29 @@ export class Game {
 
   addModels() {
     this.player = new Player(0.3, { x: 0, y: 5, z: 0 });
-    this.floor = new Floor(4, 1, 4, { x: 0, y: 0, z: 0 });
+    this.floor1 = new Floor(5, 1, 20, { x: 0, y: 0, z: 0 });
+    this.floor2 = new Floor(5, 1, 15, { x: 0, y: 0, z: -20 });
+    this.floor3 = new Floor(5, 1, 7, { x: 0, y: 0, z: -35 });
     this.light = new Light();
 
-    this.scene.add(this.player, this.floor, this.light);
-    this.physics.add(this.player.body, this.floor.body);
+    this.scene.add(
+      this.player,
+      this.light,
+      this.floor1,
+      this.floor2,
+      this.floor3
+    );
+    this.physics.add(
+      this.player.body,
+      this.floor1.body,
+      this.floor2.body,
+      this.floor3.body
+    );
   }
 
   play() {
     this.world.update(); // 매 프레임마다 update한다
-    this.physics.update(this.player, this.floor);
+    this.physics.update(this.player, this.floor1, this.floor2, this.floor3);
 
     window.requestAnimationFrame(() => {
       this.play();

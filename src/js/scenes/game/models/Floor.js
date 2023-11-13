@@ -19,6 +19,7 @@ export class Floor extends THREE.Mesh {
 
     super(geometry, material); // === THREE.Mesh(geometry, material)
     this.body = new PhysicsFloor(width, height, depth, position);
+    this.receiveShadow = true;
   }
 }
 
