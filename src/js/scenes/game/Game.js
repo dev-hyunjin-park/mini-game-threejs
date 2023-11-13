@@ -5,6 +5,7 @@ import { Floor } from "./models/Floor";
 import { Light } from "./tools/Light";
 import { Player } from "./models/Player";
 import { Barricade } from "./models/Barricade";
+import { Roller } from "./models/Roller";
 
 // 월드 클래스를 관리하는 상위 계층의 클래스
 export class Game {
@@ -25,6 +26,7 @@ export class Game {
     this.floor3 = new Floor(5, 1, 7, { x: 0, y: 0, z: -35 });
     this.barricade1 = new Barricade(1.5, 1.5, 0.5, { x: -1.5, y: 1.4, z: 3 });
     this.barricade2 = new Barricade(1.5, 1.5, 0.5, { x: 2, y: 1.4, z: -2 });
+    this.roller = new Roller(0.3, 0.3, 4, { x: 0, y: 1, z: -17 });
     this.light = new Light();
 
     this.scene.add(
@@ -35,7 +37,8 @@ export class Game {
       this.light,
       this.light.target,
       this.barricade1,
-      this.barricade2
+      this.barricade2,
+      this.roller
       // new THREE.CameraHelper(this.light.shadow.camera)
     );
     this.physics.add(
@@ -44,7 +47,8 @@ export class Game {
       this.floor2.body,
       this.floor3.body,
       this.barricade1.body,
-      this.barricade2.body
+      this.barricade2.body,
+      this.roller.body
     );
   }
 
@@ -57,7 +61,8 @@ export class Game {
       this.floor2,
       this.floor3,
       this.barricade1,
-      this.barricade2
+      this.barricade2,
+      this.roller
     );
     window.requestAnimationFrame(() => {
       this.play();

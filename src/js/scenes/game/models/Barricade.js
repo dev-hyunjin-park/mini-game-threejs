@@ -43,7 +43,7 @@ export class PhysicsBarricade extends CANNON.Body {
     super({ shape, material, mass: 0, position });
 
     this.originX = position.x;
-    this.update(duration);
+    // this.update(duration);
   }
 
   update(duration) {
