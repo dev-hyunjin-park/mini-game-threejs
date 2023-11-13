@@ -26,10 +26,12 @@ export class Game {
 
     this.scene.add(
       this.player,
-      this.light,
       this.floor1,
       this.floor2,
-      this.floor3
+      this.floor3,
+      this.light,
+      this.light.target,
+      new THREE.CameraHelper(this.light.shadow.camera)
     );
     this.physics.add(
       this.player.body,
@@ -40,9 +42,9 @@ export class Game {
   }
 
   play() {
-    this.world.update(); // 매 프레임마다 update한다
+    this.world.update(this.player); // 매 프레임마다 update한다
+    this.light.update(this.world.camera);
     this.physics.update(this.player, this.floor1, this.floor2, this.floor3);
-
     window.requestAnimationFrame(() => {
       this.play();
     });
