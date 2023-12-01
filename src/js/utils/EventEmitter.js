@@ -10,6 +10,14 @@ export class EventEmitter {
   onResize(callbackFn) {
     this.eventEmitter.on("resize", callbackFn);
   }
+
+  lose() {
+    this.eventEmitter.emit("lose");
+  }
+
+  onLose(callbackFn) {
+    this.eventEmitter.on("lose", callbackFn);
+  }
 }
 
 export const SEventEmitter = new EventEmitter();

@@ -43,16 +43,20 @@ export class PhysicsBarricade extends CANNON.Body {
     super({ shape, material, mass: 0, position });
 
     this.originX = position.x;
-    // this.update(duration);
+    this.update(duration);
   }
 
   update(duration) {
-    gasp.to(this.position, {
+    this.anime = gasp.to(this.position, {
       duration,
       x: -this.originX, // 바리케이드 초기 x값만큼만 이동
       ease: "power1.inOut",
       yoyo: true, // 초기 상태로 돌아옴
       repeat: -1, // infinite
     });
+  }
+
+  reset() {
+    this.anime.kill();
   }
 }
